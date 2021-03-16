@@ -48,8 +48,8 @@ int driver(const char *format, conver_t f_list[], va_list arg_list)
 		else
 		{
 			_putchar(format[i]); 
-			printed_chars++;
+			char_no++;
 		}
 	}
-	return (printed_chars);
+	return (char_no);
 }
