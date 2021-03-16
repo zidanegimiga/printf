@@ -21,7 +21,6 @@ int driver(const char *format, conver_t f_list[], va_list arg_list)
 	{
 		if (format[i] == '%') /*Checks for format specifiers*/
 		{
-			/*Iterates through struct to find the right func*/
 			for (j = 0; f_list[j].sym != NULL; j++)
 			{
 				if (format[i + 1] == f_list[j].sym[0])
