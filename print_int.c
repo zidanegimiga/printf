@@ -1,11 +1,11 @@
 /**
- * print_integer - outputs an integer
+ * print_int - outputs an integer
  *
  * @list_args: list of arguments
  *
  * Return: int.
  */
-int print_integer(va_list list_args)
+int print_int(va_list list_args)
 {
 	int len;
 
