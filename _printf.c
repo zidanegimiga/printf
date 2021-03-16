@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
       return (-1);
   
   va_start(arg_list, format);
-  char_no = parser(format, f_list, arg_list);
+  char_no = driver(format, f_list, arg_list);
   va_end(arg_list);
   return (char_no);
 }
