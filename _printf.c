@@ -15,7 +15,7 @@
 int _printf(const char *format, ...)
 {
   int char_no; // Number of printed characters
-  conver_t f_list[] = { //f_list is the array of format specifiers
+  conver_t f_list[] = { //f_list is the array of functions of format specifiers
     {"s", print_string},
     {"c", printchar},
     {"d", print_int},
@@ -34,4 +34,3 @@ int _printf(const char *format, ...)
   va_end(arg_list);
   return (char_no);
 }
- 
