@@ -30,6 +30,7 @@ int print_heX(va_list list);
 int hex_check(int num, char x);
 int print_rot13(va_list list);
 char *_memcpy(char *dest, char *src, unsigned int n);
+int parser(const char *format, conver_t function_list[], va_list arg_list);
 
 
 #endif /* HOLBERTON_H */
