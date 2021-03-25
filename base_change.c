@@ -46,3 +46,43 @@ int print_hex(va_list list)
   free(rev_hex);
   return (len);
 }
+
+/**
+ * print_octal - prints a number in base 8
+ * @list: list of arguments
+ * Return: number of symbols printed to stdout
+ */
+int print_octal(va_list list)
+{
+  unsigned int num;
+  int len;
+  char *octal_rep;
+  char *rev_s;
+  
+  num = va_arg(list, unsigned int);
+  
+  if (num == 0)
+    return (_putchar('0'));
+  if (num < 1)
+    return (-1);
+  len = base_length(num, 8);
+  
+  octal_rep = malloc(sizeof(char) * len + 1);
+  if (octal_rep == NULL)
+    return (-1);
+  for (len = 0; num > 0; len++)
+  {
+    octal_rep[len] = (num % 8) + 48;
+    num = num / 8;
+  }
+  
+  octal_rep[len] = '\0';
+  rev_s = rev_str(octal_rep);
+  if (rev_s == NULL)
+    return (-1);
+  
+  _base(rev_s);
+  free(octal_rep);
+  free(rev_s);
+  return (len);
+}
