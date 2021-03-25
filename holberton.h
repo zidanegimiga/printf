@@ -22,10 +22,10 @@ typedef struct convert conver_t;
 
 int _putchar(char c);
 int _printf(const char *format, ...);
-int print_int(va_list);
-int print_modulus(va_list);
-int print_string(va_list);
-int printchar(va_list);
+int print_int(va_list list);
+int print_modulus(va_list list);
+int print_string(va_list list);
+int printchar(va_list list);
 int print_heX(va_list list);
 int hex_check(int num, char x);
 int print_rot13(va_list list);
