@@ -21,6 +21,12 @@ int _printf(const char *format, ...)
     {"d", print_int},
     {"i", print_int},
     {"%", print_modulus},
+    {"u", unsigned_integer},
+    {"b", print_binary},
+    {"r", print_reversed},
+    {"R", print_rot13},
+    {"o", print_octal},
+    {"x", print_hex},
     {NULL, NULL}
   }
       
@@ -30,7 +36,8 @@ int _printf(const char *format, ...)
       return (-1);
   
   va_start(arg_list, format);
-  char_no = driver(format, f_list, arg_list);
-  va_end(arg_list);
-  return (char_no);
+  
+  chars = parser(format, function_list, arg_list);
+  va_en(arg_list);
+  return (chars);
 }
