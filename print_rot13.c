@@ -1,0 +1,33 @@
+#include "holberton.h"
+
+/**
+ * print_rot13 - outputs the rrot13 version of a string
+ * @list: string to convert
+ * Return: converted string
+ */
+int rot13(va_list list)
+{
+int i;
+int x;
+char *str;
+char s[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+char u[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
+str = va_arg(list, char *);
+if (str == NULL)
+return (-1);
+for (i = 0; str[i] != '\0'; i++)
+{
+for (x = 0; x <= 52; x++)
+{
+if (str[i] == s[x])
+{
+_putchar(u[x]);
+break;
+}
+}
+if (x == 53)
+_putchar(str[i]);
+}
+return (i);
+}
