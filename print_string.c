@@ -1,21 +1,20 @@
 #include "holberton.h"
 
 /**
- * print_string - outputs a string
- *
- * @list_args: List of arguments
- *
- * Return: number of characters printed
+ * print_string - prints a string to stdout
+ * @str: string to be printed
+ * Return: no. of characters printed on success, or 0 on failure
  */
-int print_string(va_list list_args)
+int print_string(char *str)
 {
-  int i; //Why i? Cause it's law.
-  char *str;
-  
-  str = va_arg(list, char *);
-  if (str == NULL)
-      str = "(null)";
-  for (i = ; str[i] != '\0'; i++)
-    _putchar(str[i]);
-  return (i);
+	int chars_printed = 0;
+
+	if (str == (char *)0)
+		return (print_string("(null)"));
+	while (str && str[chars_printed])
+	{
+		_putchar(str[chars_printed]);
+		chars_printed++;
+	}
+	return (chars_printed);
 }
