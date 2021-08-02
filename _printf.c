@@ -1,43 +1,54 @@
 #include "holberton.h"
 
 /**
- * _printf - a function that prints characters, strings, integers, 
- * octal and hexadecimal values onto the output screen.
+ * _printf - Function that prints formatted output.
  *
- * @format: A string of characters used as specifiers which determine
- * the nature of the output.
+ * @format: a string composed of zero or more characters to print or use as
+ * directives that handle subsequent arguments and special characters.
  *
- * Description: This is a variadic function. Please find the function prototype
- * in the README file or in the man document.
+ * Description: This function can take a variable number and type of arguments
+ * that should be printed to standard output.
  *
- * Return: Number of charactes printed.
+ * Return: int
  */
 int _printf(const char *format, ...)
 {
-  int char_no; // Number of printed characters
-  conver_t f_list[] = { //f_list is the array of functions of format specifiers
-    {"s", print_string},
-    {"c", printchar},
-    {"d", print_int},
-    {"i", print_int},
-    {"%", print_modulus},
-    {"u", unsigned_integer},
-    {"b", print_binary},
-    {"r", print_reversed},
-    {"R", print_rot13},
-    {"o", print_octal},
-    {"x", print_hex},
-    {NULL, NULL}
-  }
-      
-  va_list arg_list;
-  
-  if (format == NULL)
-      return (-1);
-  
-  va_start(arg_list, format);
-  
-  chars = parser(format, function_list, arg_list);
-  va_en(arg_list);
-  return (chars);
+	va_list args;
+	int i = 0, chars_printed = 0;
+
+	va_start(args, format);
+	while (format && format[i])
+	{
+		if (format[i] != '%')
+		{
+			chars_printed += _putchar(format[i]);
+		}
+		else if (format[i + 1])
+		{
+			i++;
+			if (format[i] == 'c' || format[i] == 's')
+				chars_printed += format[i] == 'c' ? _putchar(va_arg(args, int)) :
+				print_string(va_arg(args, char *));
+			else if (format[i] == 'd' || format[i] == 'i')
+				chars_printed += print_num(va_arg(args, int));
+			else if (format[i] == 'b')
+				chars_printed += print_binary((unsigned int)va_arg(args, int));
+			else if (format[i] == 'r')
+				chars_printed += print_reverse(va_arg(args, char *));
+			else if (format[i] == 'R')
+				chars_printed += print_rot13(va_arg(args, char *));
+			else if (format[i] == 'o' || format[i] == 'u' ||
+			format[i] == 'x' || format[i] == 'X')
+				chars_printed += print_odh(format[i], (unsigned int)va_arg(args, int));
+			else if (format[i] == 'S')
+				chars_printed += print_S(va_arg(args, char *));
+			else if (format[i] == 'p')
+				chars_printed += print_pointer(va_arg(args, void *));
+			else
+				chars_printed += print_unknown_spec(format[i]);
+		}
+		i++;
+	}
+	va_end(args);
+	return (chars_printed);
 }
